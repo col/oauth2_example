@@ -65,6 +65,11 @@
           <i class="fa fa-facebook"></i>
           Sign in with Facebook
         </a>
+
+        <a class="btn btn-primary btn-lg" href="<%= auth_path @conn, :index, "oauthenator" %>">
+          <i class="fa fa-authenator"></i>
+          Sign in with OAuthenator
+        </a>
       <% end %>
     </div>
 

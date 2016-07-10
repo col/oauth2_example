@@ -45,6 +45,7 @@ defmodule OAuth2Example.AuthController do
   defp authorize_url!("github"),   do: GitHub.authorize_url!
   defp authorize_url!("google"),   do: Google.authorize_url!(scope: "https://www.googleapis.com/auth/userinfo.email")
   defp authorize_url!("facebook"), do: Facebook.authorize_url!(scope: "user_photos")
+  defp authorize_url!("oauthenator"), do: Oauthenator.authorize_url!(scope: "email")
   defp authorize_url!(_), do: raise "No matching provider available"
 
   defp get_token!("github", code),   do: GitHub.get_token!(code: code)
