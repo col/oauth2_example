@@ -51,6 +51,7 @@ defmodule OAuth2Example.AuthController do
   defp get_token!("github", code),   do: GitHub.get_token!(code: code)
   defp get_token!("google", code),   do: Google.get_token!(code: code)
   defp get_token!("facebook", code), do: Facebook.get_token!(code: code)
+  defp get_token!("oauthenator", code), do: Oauthenator.get_token!(code: code)
   defp get_token!(_, _), do: raise "No matching provider available"
 
   defp get_user!("github", token) do
@@ -64,5 +65,9 @@ defmodule OAuth2Example.AuthController do
   defp get_user!("facebook", token) do
     {:ok, %{body: user}} = OAuth2.AccessToken.get(token, "/me", fields: "id,name")
     %{name: user["name"], avatar: "https://graph.facebook.com/#{user["id"]}/picture"}
+  end
+  defp get_user!("oauthenator", token) do
+    {:ok, %{body: user}} = OAuth2.AccessToken.get(token, "/api/profile")
+    %{name: user["name"], avatar: "/images/default_avatar.png"}
   end
 end
